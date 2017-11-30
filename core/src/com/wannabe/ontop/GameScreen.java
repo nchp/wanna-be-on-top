@@ -10,16 +10,13 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class GameScreen extends ScreenAdapter {
 	
 	private WannaBeOnTop wannaGame;
-	private Texture playerOneImg;
-	
-    private int x;
-    private int y;
+	private Texture playerTwoImg;
+	private Player playerTwo;
 	
 	public GameScreen(WannaBeOnTop wannaGame) {
 		this.wannaGame = wannaGame;
-		playerOneImg = new Texture("player1.png");
-		x = 100;
-        y = 100;
+		playerTwoImg = new Texture("player1.png");
+		playerTwo = new Player(100,100);
 	}
 	
     @Override

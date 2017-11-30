@@ -2,10 +2,10 @@ package com.wannabe.ontop;
 
 import com.badlogic.gdx.math.Vector2;
 
-public class RightPlayer {
+public class Player {
     private Vector2 position;
     
-    public RightPlayer(int x, int y) {
+    public Player(int x, int y) {
         position = new Vector2(x,y);
     }    
  
