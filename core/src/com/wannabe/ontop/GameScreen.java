@@ -6,6 +6,7 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
 
 public class GameScreen extends ScreenAdapter {
 	
@@ -28,19 +29,20 @@ public class GameScreen extends ScreenAdapter {
         
         SpriteBatch batch = wannaGame.batch;
         batch.begin();
-        batch.draw(playerOneImg, x, y);
+        Vector2 pos = playerTwo.getPosition();
+        batch.draw(playerTwoImg, pos.x, pos.y);
         batch.end();
     }
     
     private void update(float delta) {
     	if(Gdx.input.isKeyPressed(Keys.LEFT)) {
-            x -= 5;
+    		playerTwo.move(Player.DIRECTION_LEFT);
         }
         if(Gdx.input.isKeyPressed(Keys.RIGHT)) {
-            x += 5;
+        	playerTwo.move(Player.DIRECTION_RIGHT);
         }
         if(Gdx.input.isKeyPressed(Keys.UP)) {
-            y += 5;
+        	playerTwo.move(Player.DIRECTION_UP);
         }
     }
 }

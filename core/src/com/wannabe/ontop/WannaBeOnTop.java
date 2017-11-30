@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class WannaBeOnTop extends Game {
 	public static final int WIDTH = 840;
 	public static final int HEIGHT = 490;
+	
 	public SpriteBatch batch;
 	
 	@Override
