@@ -36,6 +36,14 @@ public class GameScreen extends ScreenAdapter {
     }
     
     private void update(float delta) {
-        x += 5;    
+    	if(Gdx.input.isKeyPressed(Keys.LEFT)) {
+            x -= 5;
+        }
+        if(Gdx.input.isKeyPressed(Keys.RIGHT)) {
+            x += 5;
+        }
+        if(Gdx.input.isKeyPressed(Keys.UP)) {
+            y += 5;
+        }
     }
 }
