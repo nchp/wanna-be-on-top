@@ -13,11 +13,22 @@ public class GameScreen extends ScreenAdapter {
 	private WannaBeOnTop wannaGame;
 	private Texture playerTwoImg;
 	private Player playerTwo;
+	private static double G = 0.5;
+	private static double vy, vyMax = 5;
+	private static int groundPosition = 70;
+	
+	Vector2 pos;
+	
+	World world;
 	
 	public GameScreen(WannaBeOnTop wannaGame) {
 		this.wannaGame = wannaGame;
+		
+		world = new World(wannaGame);
+		
 		playerTwoImg = new Texture("player1.png");
-		playerTwo = new Player(100,100);
+		playerTwo = world.getPlayerTwo();
+		
 	}
 	
     @Override
@@ -29,7 +40,7 @@ public class GameScreen extends ScreenAdapter {
         
         SpriteBatch batch = wannaGame.batch;
         batch.begin();
-        Vector2 pos = playerTwo.getPosition();
+        pos = playerTwo.getPosition();
         batch.draw(playerTwoImg, pos.x, pos.y);
         batch.end();
     }
@@ -41,8 +52,16 @@ public class GameScreen extends ScreenAdapter {
         if(Gdx.input.isKeyPressed(Keys.RIGHT)) {
         	playerTwo.move(Player.DIRECTION_RIGHT);
         }
-        if(Gdx.input.isKeyPressed(Keys.UP)) {
-        	playerTwo.move(Player.DIRECTION_UP);
+        
+        if(Gdx.input.isKeyJustPressed(Keys.UP)) {
+        	playerTwo.jump();
         }
+        if(playerTwo.getPosition().y > 75) {
+        	playerTwo.gravityFall();
+        }
+        if(playerTwo.getPosition().y < 70) {
+        	playerTwo.setToGround();
+        }
+        playerTwo.verticalMove();
     }
 }

@@ -10,6 +10,9 @@ public class Player {
     public static final int DIRECTION_LEFT = 3;
     public static final int DIRECTION_STILL = 0;
     
+    public float vy;
+    
+    
     private static final int [][] DIR_OFFSETS = new int [][] {
         {0,0},
         {0,1},
@@ -17,16 +20,35 @@ public class Player {
         {-1,0}
     };
     
+    public static int counter = 4;
+    
     public Player(int x, int y) {
         position = new Vector2(x,y);
-    }    
+    }
  
     public Vector2 getPosition() {
         return position;    
     }
     
     public void move(int dir) { 
-        position.x += 10 * DIR_OFFSETS[dir][0];
-        position.y += 10 * DIR_OFFSETS[dir][1];
+        position.x += 5 * DIR_OFFSETS[dir][0];
     }
+    
+    public void gravityFall() {
+    	vy -= 0.5;
+    }
+    
+    public void jump() {
+    	vy += 10;
+    }
+    
+    public void verticalMove() {
+    	position.y += vy;
+    }
+
+	public void setToGround() {
+		vy = 0;
+		position.y = 70;
+	}
+   
 }
