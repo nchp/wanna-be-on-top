@@ -50,5 +50,4 @@ public class Player {
 		vy = 0;
 		position.y = 70;
 	}
-   
 }

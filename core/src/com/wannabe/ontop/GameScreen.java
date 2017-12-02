@@ -13,9 +13,6 @@ public class GameScreen extends ScreenAdapter {
 	private WannaBeOnTop wannaGame;
 	private Texture playerTwoImg;
 	private Player playerTwo;
-	private static double G = 0.5;
-	private static double vy, vyMax = 5;
-	private static int groundPosition = 70;
 	
 	Vector2 pos;
 	
@@ -59,9 +56,9 @@ public class GameScreen extends ScreenAdapter {
         if(playerTwo.getPosition().y > 75) {
         	playerTwo.gravityFall();
         }
+        playerTwo.verticalMove();
         if(playerTwo.getPosition().y < 70) {
         	playerTwo.setToGround();
         }
-        playerTwo.verticalMove();
     }
 }
