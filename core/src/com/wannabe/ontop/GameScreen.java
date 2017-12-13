@@ -14,14 +14,14 @@ public class GameScreen extends ScreenAdapter {
 	private Texture playerTwoImg;
 	private Player playerTwo;
 	
-	Vector2 pos;
-	
 	World world;
+	WorldRenderer worldRenderer;
 	
 	public GameScreen(WannaBeOnTop wannaGame) {
 		this.wannaGame = wannaGame;
 		
 		world = new World(wannaGame);
+		worldRenderer = new WorldRenderer(wannaGame, world);
 		
 		playerTwoImg = new Texture("player1.png");
 		playerTwo = world.getPlayerTwo();
@@ -30,16 +30,12 @@ public class GameScreen extends ScreenAdapter {
 	
     @Override
     public void render(float delta) {
-    	update(delta);
-    	
+        update(delta);
+        
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        
-        SpriteBatch batch = wannaGame.batch;
-        batch.begin();
-        pos = playerTwo.getPosition();
-        batch.draw(playerTwoImg, pos.x, pos.y);
-        batch.end();
+ 
+        worldRenderer.render(delta);
     }
     
     private void update(float delta) {
