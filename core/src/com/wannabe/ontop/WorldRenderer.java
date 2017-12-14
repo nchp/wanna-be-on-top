@@ -10,6 +10,7 @@ public class WorldRenderer {
 	private SpriteBatch batch;
 	private World world;
 	private Texture playerTwoImg;
+	private MapRenderer mapRenderer;
 
 	public WorldRenderer(WannaBeOnTop wannaGame, World world) {
     	this.wannaGame = wannaGame;
@@ -17,9 +18,12 @@ public class WorldRenderer {
     	this.world = world;
     	
     	playerTwoImg = new Texture("player1.png");
+    	mapRenderer = new MapRenderer(wannaGame.batch, world.getMap());
     }
 	
     public void render(float delta) {
+    	mapRenderer.render();
+    	
     	Vector2 pos = world.getPlayerTwo().getPosition();
         batch.begin();
         batch.draw(playerTwoImg, pos.x, pos.y);

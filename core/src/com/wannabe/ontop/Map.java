@@ -7,7 +7,7 @@ public class Map {
             "............",
             "............",
             "............",
-            "############",
+            "------------",
             "############",
             "############"    
     };
@@ -26,5 +26,13 @@ public class Map {
  
     public int getWidth() {
         return width;
+    }
+    
+    public boolean hasGroundAt(int r, int c) {
+        return MAP[r].charAt(c) == '#';
+    }
+ 
+    public boolean hasGrassAt(int r, int c) {
+        return MAP[r].charAt(c) == '-';
     }
 }
