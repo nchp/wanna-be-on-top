@@ -7,7 +7,7 @@ public class World {
 	
 	World(WannaBeOnTop wannaGame) {
 		this.wannaGame = wannaGame;
-		playerTwo = new Player(630,70);
+		playerTwo = new Player(630,210);
 		map = new Map();
 	}
 	

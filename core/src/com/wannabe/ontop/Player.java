@@ -48,6 +48,6 @@ public class Player {
 
 	public void setToGround() {
 		vy = 0;
-		position.y = 70;
+		position.y = 210;
 	}
 }

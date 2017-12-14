@@ -23,7 +23,7 @@ public class GameScreen extends ScreenAdapter {
 		world = new World(wannaGame);
 		worldRenderer = new WorldRenderer(wannaGame, world);
 		
-		playerTwoImg = new Texture("player1.png");
+		playerTwoImg = new Texture("slimeBlueBan.png");
 		playerTwo = world.getPlayerTwo();
 		
 	}
@@ -49,11 +49,11 @@ public class GameScreen extends ScreenAdapter {
         if(Gdx.input.isKeyJustPressed(Keys.UP)) {
         	playerTwo.jump();
         }
-        if(playerTwo.getPosition().y > 75) {
+        if(playerTwo.getPosition().y > 215) {
         	playerTwo.gravityFall();
         }
         playerTwo.verticalMove();
-        if(playerTwo.getPosition().y < 70) {
+        if(playerTwo.getPosition().y < 210) {
         	playerTwo.setToGround();
         }
     }

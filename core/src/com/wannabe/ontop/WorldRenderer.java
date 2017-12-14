@@ -17,7 +17,7 @@ public class WorldRenderer {
     	batch = wannaGame.batch;
     	this.world = world;
     	
-    	playerTwoImg = new Texture("player1.png");
+    	playerTwoImg = new Texture("slimeBlueBan.png");
     	mapRenderer = new MapRenderer(wannaGame.batch, world.getMap());
     }
 	
