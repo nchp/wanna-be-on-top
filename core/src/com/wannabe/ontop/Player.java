@@ -12,6 +12,7 @@ public class Player {
     
     public float vy;
     
+    public int groundPosition = 140;    
     
     private static final int [][] DIR_OFFSETS = new int [][] {
         {0,0},
@@ -48,6 +49,6 @@ public class Player {
 
 	public void setToGround() {
 		vy = 0;
-		position.y = 210;
+		position.y = groundPosition;
 	}
 }

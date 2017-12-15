@@ -6,17 +6,17 @@ import com.badlogic.gdx.math.Vector2;
 
 public class WorldRenderer {
 	
-    private WannaBeOnTop wannaGame;
-	private SpriteBatch batch;
+    private SpriteBatch batch;
 	private World world;
+	private Texture playerOneImg;
 	private Texture playerTwoImg;
 	private MapRenderer mapRenderer;
 
 	public WorldRenderer(WannaBeOnTop wannaGame, World world) {
-    	this.wannaGame = wannaGame;
     	batch = wannaGame.batch;
     	this.world = world;
     	
+    	playerOneImg = new Texture("slimePurpleBan.png");
     	playerTwoImg = new Texture("slimeBlueBan.png");
     	mapRenderer = new MapRenderer(wannaGame.batch, world.getMap());
     }
@@ -24,9 +24,11 @@ public class WorldRenderer {
     public void render(float delta) {
     	mapRenderer.render();
     	
-    	Vector2 pos = world.getPlayerTwo().getPosition();
+    	Vector2 posOne = world.getPlayerOne().getPosition();
+    	Vector2 posTwo = world.getPlayerTwo().getPosition();
         batch.begin();
-        batch.draw(playerTwoImg, pos.x, pos.y);
+        batch.draw(playerOneImg, posOne.x, posOne.y);
+        batch.draw(playerTwoImg, posTwo.x, posTwo.y);
         batch.end();
     }
 }

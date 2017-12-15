@@ -1,14 +1,18 @@
 package com.wannabe.ontop;
 
 public class World {
+	private Player playerOne;
 	private Player playerTwo;
-	private WannaBeOnTop wannaGame;
 	private Map map;
 	
 	World(WannaBeOnTop wannaGame) {
-		this.wannaGame = wannaGame;
-		playerTwo = new Player(630,210);
+		playerOne = new Player(140,140);
+		playerTwo = new Player(700,140);
 		map = new Map();
+	}
+	
+	Player getPlayerOne() {
+		return playerOne;
 	}
 	
 	Player getPlayerTwo() {
