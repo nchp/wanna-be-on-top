@@ -10,6 +10,8 @@ public class MapRenderer {
     private Texture groundImage;
     private Texture grassImage;
     private Texture skyImage;
+	private Texture cloudOneImg;
+	private Texture cloudTwoImg;
     
     public MapRenderer(SpriteBatch batch, Map maze) {
         this.map = map;
@@ -20,6 +22,8 @@ public class MapRenderer {
         groundImage = new Texture("grassCenter.png");
         grassImage = new Texture("grassMid.png");
         skyImage = new Texture("bg.png");
+    	cloudOneImg = new Texture("cloud1.png");
+    	cloudTwoImg = new Texture("cloud2.png");
         
     }
  
@@ -39,6 +43,8 @@ public class MapRenderer {
                 }
             }
         }
+        batch.draw(cloudOneImg, 160, 330);
+        batch.draw(cloudTwoImg, 490, 220);
         batch.end();
     }
 }

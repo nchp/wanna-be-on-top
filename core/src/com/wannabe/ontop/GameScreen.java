@@ -40,9 +40,13 @@ public class GameScreen extends ScreenAdapter {
     }
     
     private void update(float delta) {
-    	if((world.gameState ==  world.initialState) || (world.gameState == world.playerOneWin) || (world.gameState == world.playerTwoWin)) {
+    	if(world.gameState ==  world.initialState) {
     		if(Gdx.input.isKeyPressed(Keys.SPACE)) {
-	    		world.gameState = world.playingState;
+	    		world.gameRunning();
+	        }
+    	} else if((world.gameState == world.playerOneWin) || (world.gameState == world.playerTwoWin)) {
+    		if(Gdx.input.isKeyPressed(Keys.SPACE)) {
+	    		world.restart();
 	        }
     	}
     	
@@ -87,9 +91,9 @@ public class GameScreen extends ScreenAdapter {
     	}
         
         if(checkCollision(playerOne, playerTwo)) {
-        	world.gameState = world.playerOneWin;
+        	world.playerOneWin();
         } else if(checkCollision(playerTwo, playerOne)) {
-        	world.gameState = world.playerTwoWin;
+        	world.playerTwoWin();
         }
     }
     
