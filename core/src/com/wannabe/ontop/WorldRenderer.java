@@ -14,6 +14,7 @@ public class WorldRenderer {
 	
 	private Texture startTag;
 	private Texture restartTag;
+	private Texture nameTag;
 	
 	private Texture cloudOneImg;
 	private Texture cloudTwoImg;
@@ -29,6 +30,7 @@ public class WorldRenderer {
     	playerTwoImg = new Texture("slimeBlueBan.png");
     	startTag = new Texture("pressStartTag.png");
     	restartTag = new Texture("pressRestartTag.png");
+    	nameTag = new Texture("name.png");
     	cloudOneImg = new Texture("cloud1.png");
     	cloudTwoImg = new Texture("cloud2.png");
     	playerOneDie = new Texture("slimePurpleBee.png");
@@ -57,6 +59,7 @@ public class WorldRenderer {
 	        batch.draw(startTag, 210, 410);
 	        batch.draw(cloudOneImg, posCloudOne.x, posCloudOne.y);
 	        batch.draw(cloudTwoImg, posCloudTwo.x, posCloudTwo.y);
+	        batch.draw(nameTag, 35, 120);
 	        batch.end();
     	} 
     	
