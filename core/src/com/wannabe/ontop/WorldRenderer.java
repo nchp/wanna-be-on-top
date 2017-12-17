@@ -10,6 +10,9 @@ public class WorldRenderer {
 	private World world;
 	private Texture playerOneImg;
 	private Texture playerTwoImg;
+	private Texture cloudOneImg;
+	private Texture cloudTwoImg;
+	private Texture initialPage;
 	private MapRenderer mapRenderer;
 
 	public WorldRenderer(WannaBeOnTop wannaGame, World world) {
@@ -18,6 +21,9 @@ public class WorldRenderer {
     	
     	playerOneImg = new Texture("slimePurpleBan.png");
     	playerTwoImg = new Texture("slimeBlueBan.png");
+    	cloudOneImg = new Texture("cloud1.png");
+    	cloudTwoImg = new Texture("cloud2.png");
+    	initialPage = new Texture("initialPage.png");
     	mapRenderer = new MapRenderer(wannaGame.batch, world.getMap());
     }
 	
@@ -31,7 +37,13 @@ public class WorldRenderer {
 	        batch.draw(playerTwoImg, posTwo.x, posTwo.y);
 	        batch.end();
     	} else if(world.gameState == world.initialState) {
-    		
+	    	Vector2 posOne = world.getCloudOne().getPosition();
+	    	Vector2 posTwo = world.getCloudTwo().getPosition();
+	        batch.begin();
+	        batch.draw(initialPage, 0, 0);
+	        batch.draw(cloudOneImg, posOne.x, posOne.y);
+	        batch.draw(cloudTwoImg, posTwo.x, posTwo.y);
+	        batch.end();
     	} else if(world.gameState == world.playerOneWin) {
     		
     	} else if(world.gameState == world.playerTwoWin) {
