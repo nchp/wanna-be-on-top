@@ -26,8 +26,7 @@ public class GameScreen extends ScreenAdapter {
 		playerOne = world.getPlayerOne();
 		
 		new Texture("slimeBlueBan.png");
-		playerTwo = world.getPlayerTwo();
-		
+		playerTwo = world.getPlayerTwo();		
 	}
 	
     @Override
@@ -41,60 +40,66 @@ public class GameScreen extends ScreenAdapter {
     }
     
     private void update(float delta) {
-    	// purpleOne
-    	if(Gdx.input.isKeyPressed(Keys.A)) {
-    		playerOne.move(Player.DIRECTION_LEFT);
-        }
-        if(Gdx.input.isKeyPressed(Keys.D)) {
-        	playerOne.move(Player.DIRECTION_RIGHT);
-        }
-        
-        if(Gdx.input.isKeyJustPressed(Keys.W)) {
-        	playerOne.jump();
-        }
-        if(playerOne.getPosition().y > 145) {
-        	playerOne.gravityFall();
-        }
-        playerOne.verticalMove();
-        if(playerOne.getPosition().y < 140) {
-        	playerOne.setToGround();
-        }
+    	if((world.gameState ==  world.initialState) || (world.gameState == world.playerOneWin) || (world.gameState == world.playerTwoWin)) {
+    		if(Gdx.input.isKeyPressed(Keys.SPACE)) {
+	    		world.gameState = world.playingState;
+	        }
+    	}
     	
-    	// blueTwo
-    	if(Gdx.input.isKeyPressed(Keys.LEFT)) {
-    		playerTwo.move(Player.DIRECTION_LEFT);
-        }
-        if(Gdx.input.isKeyPressed(Keys.RIGHT)) {
-        	playerTwo.move(Player.DIRECTION_RIGHT);
-        }
+    	if(world.gameState == world.playingState) {
+	    	// purpleOne
+	    	if(Gdx.input.isKeyPressed(Keys.A)) {
+	    		playerOne.move(Player.DIRECTION_LEFT);
+	        }
+	        if(Gdx.input.isKeyPressed(Keys.D)) {
+	        	playerOne.move(Player.DIRECTION_RIGHT);
+	        }
+	        
+	        if(Gdx.input.isKeyJustPressed(Keys.W)) {
+	        	playerOne.jump();
+	        }
+	        if(playerOne.getPosition().y > 145) {
+	        	playerOne.gravityFall();
+	        }
+	        playerOne.verticalMove();
+	        if(playerOne.getPosition().y < 140) {
+	        	playerOne.setToGround();
+	        }
+	    	
+	    	// blueTwo
+	    	if(Gdx.input.isKeyPressed(Keys.LEFT)) {
+	    		playerTwo.move(Player.DIRECTION_LEFT);
+	        }
+	        if(Gdx.input.isKeyPressed(Keys.RIGHT)) {
+	        	playerTwo.move(Player.DIRECTION_RIGHT);
+	        }
+	        
+	        if(Gdx.input.isKeyJustPressed(Keys.UP)) {
+	        	playerTwo.jump();
+	        }
+	        if(playerTwo.getPosition().y > 145) {
+	        	playerTwo.gravityFall();
+	        }
+	        playerTwo.verticalMove();
+	        if(playerTwo.getPosition().y < 140) {
+	        	playerTwo.setToGround();
+	        }
+    	}
         
-        if(Gdx.input.isKeyJustPressed(Keys.UP)) {
-        	playerTwo.jump();
+        if(checkCollision(playerOne, playerTwo)) {
+        	world.gameState = world.playerOneWin;
+        } else if(checkCollision(playerTwo, playerOne)) {
+        	world.gameState = world.playerTwoWin;
         }
-        if(playerTwo.getPosition().y > 145) {
-        	playerTwo.gravityFall();
-        }
-        playerTwo.verticalMove();
-        if(playerTwo.getPosition().y < 140) {
-        	playerTwo.setToGround();
-        }
-        
-        /*
-        if((playerOne.getPosition().y - playerTwo.getPosition().y <= 30 && playerOne.getPosition().y - playerTwo.getPosition().y >= 25) && (Math.abs(playerOne.getPosition().x - playerTwo.getPosition().x) <= 55)) {
-        	playerOne.jump();
-        }
-        */
-        
-        checkCollision(playerOne, playerTwo);
-        checkCollision(playerTwo, playerOne);
     }
     
-    private void checkCollision(Player one, Player two) {
+    private boolean checkCollision(Player one, Player two) {
     	Vector2 posOne = one.getPosition();
     	Vector2 posTwo = two.getPosition();
     	if((posOne.y - posTwo.y <= 30 && posOne.y - posTwo.y >= 25) && (Math.abs(posOne.x - posTwo.x) <= 55)) {
-    		 one.jump();
+    		 return true;
     	}
+    	return false;
     }
     
 }
