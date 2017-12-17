@@ -31,7 +31,12 @@ public class GameScreen extends ScreenAdapter {
 		playerOne = world.getPlayerOne();
 		
 		new Texture("slimeBlueBan.png");
-		playerTwo = world.getPlayerTwo();		
+		playerTwo = world.getPlayerTwo();
+		
+		new Texture("cloud1.png");
+		new Texture("cloud2.png");
+		cloudOne = world.getCloudOne();
+		cloudTwo = world.getCloudTwo();
 	}
 	
     @Override
@@ -46,6 +51,9 @@ public class GameScreen extends ScreenAdapter {
     
     private void update(float delta) {
     	if(world.gameState ==  world.initialState) {
+    		moveConstantly(cloudOne, cloudOneMoving);
+    		moveConstantly(cloudTwo, cloudTwoMoving);
+    		
     		if(Gdx.input.isKeyPressed(Keys.SPACE)) {
 	    		world.gameRunning();
 	        }
@@ -63,10 +71,10 @@ public class GameScreen extends ScreenAdapter {
 	        if(Gdx.input.isKeyPressed(Keys.D)) {
 	        	playerOne.move(Player.DIRECTION_RIGHT);
 	        }
-	        
 	        if(Gdx.input.isKeyJustPressed(Keys.W)) {
 	        	playerOne.jump();
 	        }
+	        
 	        if(playerOne.getPosition().y > 145) {
 	        	playerOne.gravityFall();
 	        }
@@ -86,6 +94,7 @@ public class GameScreen extends ScreenAdapter {
 	        if(Gdx.input.isKeyJustPressed(Keys.UP)) {
 	        	playerTwo.jump();
 	        }
+	        
 	        if(playerTwo.getPosition().y > 145) {
 	        	playerTwo.gravityFall();
 	        }
@@ -102,21 +111,9 @@ public class GameScreen extends ScreenAdapter {
         }
         
         if(world.gameState == world.playerOneWin) {
-	        if(playerOne.getPosition().y > 145) {
-	        	playerOne.gravityFall();
-	        }
-	        playerOne.verticalMove();
-	        if(playerOne.getPosition().y < 140) {
-	        	playerOne.jump();
-	        }
+	        jumpEndlessly(playerOne);
         } else if(world.gameState == world.playerTwoWin) {
-	        if(playerTwo.getPosition().y > 145) {
-	        	playerTwo.gravityFall();
-	        }
-	        playerTwo.verticalMove();
-	        if(playerTwo.getPosition().y < 141) {
-	        	playerTwo.jump();
-	        }
+        	jumpEndlessly(playerTwo);
         }
     }
     
@@ -129,4 +126,22 @@ public class GameScreen extends ScreenAdapter {
     	return false;
     }
     
+    private void moveConstantly(Player player, int dir) {
+		player.moveSlowly(dir);
+		if(player.getPosition().x > 711) {
+			dir = Player.DIRECTION_LEFT;
+		} else if(player.getPosition().x < 0) {
+			dir = Player.DIRECTION_RIGHT;
+		}
+    }
+    
+    private void jumpEndlessly(Player player) {
+	    if(player.getPosition().y > 145) {
+	    	player.gravityFall();
+	    }
+	    player.verticalMove();
+	    if(player.getPosition().y < 140) {
+	    	player.jump();
+	    }
+    }
 }

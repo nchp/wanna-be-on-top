@@ -18,7 +18,7 @@ public class World {
 		playerOne = new Player(83,140);
 		playerTwo = new Player(700,140);
 		cloudOne = new Player(160,330);
-		cloudTwo = new Player(490,220);
+		cloudTwo = new Player(490,210);
 		map = new Map();
 	}
 	

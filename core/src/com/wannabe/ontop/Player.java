@@ -36,7 +36,7 @@ public class Player {
     }
     
     public void moveSlowly(int dir) { 
-        position.x += 2 * DIR_OFFSETS[dir][0];
+        position.x += 1 * DIR_OFFSETS[dir][0];
     }
     
     public void gravityFall() {

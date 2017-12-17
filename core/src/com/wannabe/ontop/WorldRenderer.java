@@ -38,39 +38,49 @@ public class WorldRenderer {
     	if(world.gameState == world.playingState) {
 	    	Vector2 posOne = world.getPlayerOne().getPosition();
 	    	Vector2 posTwo = world.getPlayerTwo().getPosition();
+	    	
+    		Vector2 posCloudOne = world.getCloudOne().getPosition();
+	    	Vector2 posCloudTwo = world.getCloudTwo().getPosition();
+	    	
 	        batch.begin();
 	        batch.draw(playerOneImg, posOne.x, posOne.y);
 	        batch.draw(playerTwoImg, posTwo.x, posTwo.y);
-	        batch.draw(cloudOneImg, 160, 330);
-	        batch.draw(cloudTwoImg, 490, 220);
+	        batch.draw(cloudOneImg, posCloudOne.x, posCloudOne.y);
+	        batch.draw(cloudTwoImg, posCloudTwo.x, posCloudTwo.y);
 	        batch.end();
+	        
     	} else if(world.gameState == world.initialState) {
-    		Vector2 posOne = world.getCloudOne().getPosition();
-	    	Vector2 posTwo = world.getCloudTwo().getPosition();
+    		Vector2 posCloudOne = world.getCloudOne().getPosition();
+	    	Vector2 posCloudTwo = world.getCloudTwo().getPosition();
+	    	
 	        batch.begin();
 	        batch.draw(startTag, 210, 410);
-	        batch.draw(cloudOneImg, posOne.x, posOne.y);
-	        batch.draw(cloudTwoImg, posTwo.x, posTwo.y);
+	        batch.draw(cloudOneImg, posCloudOne.x, posCloudOne.y);
+	        batch.draw(cloudTwoImg, posCloudTwo.x, posCloudTwo.y);
 	        batch.end();
+	        
     	} else if(world.gameState == world.playerOneWin) {
 	    	Vector2 posSlime = world.getPlayerOne().getPosition();
-    		Vector2 posOne = world.getCloudOne().getPosition();
-	    	Vector2 posTwo = world.getCloudTwo().getPosition();
+    		Vector2 posCloudOne = world.getCloudOne().getPosition();
+	    	Vector2 posCloudTwo = world.getCloudTwo().getPosition();
+	    	
 	        batch.begin();
 	        batch.draw(restartTag, 210, 410);
 	        batch.draw(playerOneImg, posSlime.x, posSlime.y);
-	        batch.draw(cloudOneImg, posOne.x, posOne.y);
-	        batch.draw(cloudTwoImg, posTwo.x, posTwo.y);
+	        batch.draw(cloudOneImg, posCloudOne.x, posCloudOne.y);
+	        batch.draw(cloudTwoImg, posCloudTwo.x, posCloudTwo.y);
 	        batch.end();
+	        
     	} else if(world.gameState == world.playerTwoWin) {
 	    	Vector2 posSlime = world.getPlayerTwo().getPosition();
-    		Vector2 posOne = world.getCloudOne().getPosition();
-	    	Vector2 posTwo = world.getCloudTwo().getPosition();
+    		Vector2 posCloudOne = world.getCloudOne().getPosition();
+	    	Vector2 posCloudTwo = world.getCloudTwo().getPosition();
+	    	
 	        batch.begin();
 	        batch.draw(restartTag, 210, 410);
 	       	batch.draw(playerTwoImg, posSlime.x, posSlime.y);
-	        batch.draw(cloudOneImg, posOne.x, posOne.y);
-	        batch.draw(cloudTwoImg, posTwo.x, posTwo.y);
+	        batch.draw(cloudOneImg, posCloudOne.x, posCloudOne.y);
+	        batch.draw(cloudTwoImg, posCloudTwo.x, posCloudTwo.y);
 	        batch.end();
     	}
     }
