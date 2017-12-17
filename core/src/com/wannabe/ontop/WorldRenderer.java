@@ -59,7 +59,7 @@ public class WorldRenderer {
 	        batch.draw(startTag, 210, 410);
 	        batch.draw(cloudOneImg, posCloudOne.x, posCloudOne.y);
 	        batch.draw(cloudTwoImg, posCloudTwo.x, posCloudTwo.y);
-	        batch.draw(nameTag, 35, 120);
+	        batch.draw(nameTag, 70, 120);
 	        batch.end();
     	} 
     	

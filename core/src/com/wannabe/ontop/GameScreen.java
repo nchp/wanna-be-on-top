@@ -9,7 +9,6 @@ import com.badlogic.gdx.math.Vector2;
 
 public class GameScreen extends ScreenAdapter {
 	
-	private WannaBeOnTop wannaGame;
 	private Player playerOne;
 	private Player playerTwo;
 	private Player cloudOne;
@@ -22,8 +21,6 @@ public class GameScreen extends ScreenAdapter {
 	private int cloudTwoDir = Player.DIRECTION_LEFT;
 	
 	public GameScreen(WannaBeOnTop wannaGame) {
-		this.wannaGame = wannaGame;
-		
 		world = new World(wannaGame);
 		worldRenderer = new WorldRenderer(wannaGame, world);
 		
