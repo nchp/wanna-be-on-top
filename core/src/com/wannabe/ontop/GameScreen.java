@@ -18,8 +18,8 @@ public class GameScreen extends ScreenAdapter {
 	World world;
 	WorldRenderer worldRenderer;
 	
-	private int cloudOneMoving = Player.DIRECTION_RIGHT;
-	private int cloudTwoMoving = Player.DIRECTION_LEFT;
+	private int cloudOneDir = Player.DIRECTION_RIGHT;
+	private int cloudTwoDir = Player.DIRECTION_LEFT;
 	
 	public GameScreen(WannaBeOnTop wannaGame) {
 		this.wannaGame = wannaGame;
@@ -51,13 +51,28 @@ public class GameScreen extends ScreenAdapter {
     
     private void update(float delta) {
     	if(world.gameState ==  world.initialState) {
-    		moveConstantly(cloudOne, cloudOneMoving);
-    		moveConstantly(cloudTwo, cloudTwoMoving);
+    		// cloudOne harmonic
+    		cloudOne.moveSlowly(cloudOneDir);
+    		if(cloudOne.getPosition().x > 711) {
+    			cloudOneDir = Player.DIRECTION_LEFT;
+    		} else if(cloudOne.getPosition().x < 0) {
+    			cloudOneDir = Player.DIRECTION_RIGHT;
+    		}
+    		
+    		// cloudTwo harmonic
+    		cloudTwo.moveSlowly(cloudTwoDir);
+    		if(cloudTwo.getPosition().x > 711) {
+    			cloudTwoDir = Player.DIRECTION_LEFT;
+    		} else if(cloudTwo.getPosition().x < 0) {
+    			cloudTwoDir = Player.DIRECTION_RIGHT;
+    		}    		
     		
     		if(Gdx.input.isKeyPressed(Keys.SPACE)) {
 	    		world.gameRunning();
 	        }
-    	} else if((world.gameState == world.playerOneWin) || (world.gameState == world.playerTwoWin)) {
+    	} 
+    	
+    	if((world.gameState == world.playerOneWin) || (world.gameState == world.playerTwoWin)) {
     		if(Gdx.input.isKeyPressed(Keys.SPACE)) {
 	    		world.restart();
 	        }
@@ -90,7 +105,6 @@ public class GameScreen extends ScreenAdapter {
 	        if(Gdx.input.isKeyPressed(Keys.RIGHT)) {
 	        	playerTwo.move(Player.DIRECTION_RIGHT);
 	        }
-	        
 	        if(Gdx.input.isKeyJustPressed(Keys.UP)) {
 	        	playerTwo.jump();
 	        }
@@ -112,8 +126,37 @@ public class GameScreen extends ScreenAdapter {
         
         if(world.gameState == world.playerOneWin) {
 	        jumpEndlessly(playerOne);
-        } else if(world.gameState == world.playerTwoWin) {
+	        // cloudOne harmonic
+    		cloudOne.moveSlowly(cloudOneDir);
+    		if(cloudOne.getPosition().x > 711) {
+    			cloudOneDir = Player.DIRECTION_LEFT;
+    		} else if(cloudOne.getPosition().x < 0) {
+    			cloudOneDir = Player.DIRECTION_RIGHT;
+    		}
+    		// cloudTwo harmonic
+    		cloudTwo.moveSlowly(cloudTwoDir);
+    		if(cloudTwo.getPosition().x > 711) {
+    			cloudTwoDir = Player.DIRECTION_LEFT;
+    		} else if(cloudTwo.getPosition().x < 0) {
+    			cloudTwoDir = Player.DIRECTION_RIGHT;
+    		}
+        } 
+        else if(world.gameState == world.playerTwoWin) {
         	jumpEndlessly(playerTwo);
+        	// cloudOne harmonic
+    		cloudOne.moveSlowly(cloudOneDir);
+    		if(cloudOne.getPosition().x > 711) {
+    			cloudOneDir = Player.DIRECTION_LEFT;
+    		} else if(cloudOne.getPosition().x < 0) {
+    			cloudOneDir = Player.DIRECTION_RIGHT;
+    		}
+    		// cloudTwo harmonic
+    		cloudTwo.moveSlowly(cloudTwoDir);
+    		if(cloudTwo.getPosition().x > 711) {
+    			cloudTwoDir = Player.DIRECTION_LEFT;
+    		} else if(cloudTwo.getPosition().x < 0) {
+    			cloudTwoDir = Player.DIRECTION_RIGHT;
+    		}
         }
     }
     
@@ -126,21 +169,12 @@ public class GameScreen extends ScreenAdapter {
     	return false;
     }
     
-    private void moveConstantly(Player player, int dir) {
-		player.moveSlowly(dir);
-		if(player.getPosition().x > 711) {
-			dir = Player.DIRECTION_LEFT;
-		} else if(player.getPosition().x < 0) {
-			dir = Player.DIRECTION_RIGHT;
-		}
-    }
-    
     private void jumpEndlessly(Player player) {
-	    if(player.getPosition().y > 145) {
+	    if(player.getPosition().y > 159) {
 	    	player.gravityFall();
 	    }
 	    player.verticalMove();
-	    if(player.getPosition().y < 140) {
+	    if(player.getPosition().y < 154) {
 	    	player.jump();
 	    }
     }
