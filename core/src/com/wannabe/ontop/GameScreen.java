@@ -12,9 +12,14 @@ public class GameScreen extends ScreenAdapter {
 	private WannaBeOnTop wannaGame;
 	private Player playerOne;
 	private Player playerTwo;
+	private Player cloudOne;
+	private Player cloudTwo;
 	
 	World world;
 	WorldRenderer worldRenderer;
+	
+	private int cloudOneMoving = Player.DIRECTION_RIGHT;
+	private int cloudTwoMoving = Player.DIRECTION_LEFT;
 	
 	public GameScreen(WannaBeOnTop wannaGame) {
 		this.wannaGame = wannaGame;
@@ -94,6 +99,24 @@ public class GameScreen extends ScreenAdapter {
         	world.playerOneWin();
         } else if(checkCollision(playerTwo, playerOne)) {
         	world.playerTwoWin();
+        }
+        
+        if(world.gameState == world.playerOneWin) {
+	        if(playerOne.getPosition().y > 145) {
+	        	playerOne.gravityFall();
+	        }
+	        playerOne.verticalMove();
+	        if(playerOne.getPosition().y < 140) {
+	        	playerOne.jump();
+	        }
+        } else if(world.gameState == world.playerTwoWin) {
+	        if(playerTwo.getPosition().y > 145) {
+	        	playerTwo.gravityFall();
+	        }
+	        playerTwo.verticalMove();
+	        if(playerTwo.getPosition().y < 141) {
+	        	playerTwo.jump();
+	        }
         }
     }
     

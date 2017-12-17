@@ -43,8 +43,6 @@ public class MapRenderer {
                 }
             }
         }
-        batch.draw(cloudOneImg, 160, 330);
-        batch.draw(cloudTwoImg, 490, 220);
         batch.end();
     }
 }

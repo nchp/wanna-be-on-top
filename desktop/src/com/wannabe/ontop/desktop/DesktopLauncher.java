@@ -11,4 +11,4 @@ public class DesktopLauncher {
 		config.height = WannaBeOnTop.HEIGHT;
 		new LwjglApplication(new WannaBeOnTop(), config);
 	}
-}
+} 
