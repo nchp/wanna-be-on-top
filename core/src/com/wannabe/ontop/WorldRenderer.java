@@ -59,7 +59,7 @@ public class WorldRenderer {
 	        batch.draw(startTag, 210, 410);
 	        batch.draw(cloudOneImg, posCloudOne.x, posCloudOne.y);
 	        batch.draw(cloudTwoImg, posCloudTwo.x, posCloudTwo.y);
-	        batch.draw(nameTag, 70, 120);
+	        batch.draw(nameTag, 210, 350);
 	        batch.end();
     	} 
     	
@@ -68,7 +68,7 @@ public class WorldRenderer {
 	        batch.draw(restartTag, 210, 410);
 	        batch.draw(cloudOneImg, posCloudOne.x, posCloudOne.y);
 	        batch.draw(cloudTwoImg, posCloudTwo.x, posCloudTwo.y);
-	        batch.draw(playerTwoDie, posTwo.x, posTwo.y);
+	        batch.draw(playerTwoDie, posTwo.x, 140);
 	        batch.draw(playerOneImg, posOne.x, posOne.y);
 	        batch.end();
     	} 
@@ -78,7 +78,7 @@ public class WorldRenderer {
 	        batch.draw(cloudOneImg, posCloudOne.x, posCloudOne.y);
 	        batch.draw(cloudTwoImg, posCloudTwo.x, posCloudTwo.y);
 	        batch.draw(restartTag, 210, 410);
-	        batch.draw(playerOneDie, posOne.x, posOne.y);
+	        batch.draw(playerOneDie, posOne.x, 140);
 	       	batch.draw(playerTwoImg, posTwo.x, posTwo.y);
 	        batch.end();
     	}

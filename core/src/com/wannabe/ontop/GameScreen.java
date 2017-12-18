@@ -115,11 +115,15 @@ public class GameScreen extends ScreenAdapter {
 	        }
     	}
         
-        if(checkCollision(playerOne, playerTwo)) {
-        	world.playerOneWin();
-        } else if(checkCollision(playerTwo, playerOne)) {
-        	world.playerTwoWin();
-        }
+    	if(world.running) {
+	    	if(checkCollision(playerOne, playerTwo)) {
+	        	world.playerOneWin();
+	        	world.running = false;
+	        } else if(checkCollision(playerTwo, playerOne)) {
+	        	world.playerTwoWin();
+	        	world.running = false;
+	        }
+    	}
         
         if(world.gameState == world.playerOneWin) {
 	        jumpEndlessly(playerOne);

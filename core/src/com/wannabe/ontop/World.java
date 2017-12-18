@@ -12,6 +12,8 @@ public class World {
 	public static int playerOneWin = 2;
 	public static int playerTwoWin = 3;
 	
+	public boolean running = true;
+	
 	public int gameState = initialState;
 	
 	World(WannaBeOnTop wannaGame) {
@@ -56,6 +58,7 @@ public class World {
 	
 	public void restart() {
 		gameState = playingState;
+		running = true;
 		playerOne.getPosition().x = 83;
 		playerOne.getPosition().y = 140;
 		playerTwo.getPosition().x = 700;
